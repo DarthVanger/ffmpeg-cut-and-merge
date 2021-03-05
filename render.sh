@@ -1,6 +1,3 @@
-source ~/.bash_profile
-
-sh cut.sh --preview
+sh cut.sh
 sh merge.sh
-mv output/merged.mp4 output/video.mp4
-vlc output/video.mp4
+vlc output/merged.mp4 || echo "Failed to run VLC. Install it, or use another media player in render.sh to automatically play the video"

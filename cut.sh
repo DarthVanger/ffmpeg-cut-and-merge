@@ -4,42 +4,17 @@
 # Cut videos into pieces.
 # -ss is start time of cut
 # -t is duration of output
+# -i is the path to source video
+# Resulting videos are saved to output/pieces/ folder.
 ########
 
-output_folder="output/pieces"
+# remove pieces/ dir with files from the previous run, if any
+rm -rf output/pieces
+# create output/pieces directory again, for the new pieces
+mkdir -p output/pieces
 
-rm -rf output/pieces/*
-
-case "$1" in
-   --preview) source_folder="output/preview" ;;
-           *) source_folder="source_video" ;;
-     esac
-
-echo "Cutting files from '${source_folder}'"
-
-# watching street
-ffmpeg -y -ss 00:00:02 -i "${source_folder}/01-watching-street.mp4"  -t 4 "${output_folder}/01.mp4"
-ffmpeg -y -ss 00:00:00 -i "${source_folder}/02-street.mp4"  -t 4  "${output_folder}/02.mp4"
-
-# robot
-ffmpeg -y -ss 00:00:02 -i "${source_folder}/10-robot.mp4"  -t 20 "${output_folder}/05.mp4"
-
-# watching street again
-ffmpeg -y -ss 00:00:02 -i "${source_folder}/04-watching-street.mp4"  -t 4 "${output_folder}/06.mp4"
-ffmpeg -y -ss 00:00:00 -i "${source_folder}/03-street.mp4"  -t 4  "${output_folder}/07.mp4"
-
-# ninja: mirrors
-ffmpeg -y -ss 00:00:03 -i "${source_folder}/30-mirrors.mp4"  -t 2  "${output_folder}/20.mp4"
-ffmpeg -y -ss 00:00:03 -i "${source_folder}/21-mirrors.mp4"  -t 2  "${output_folder}/21.mp4"
-
-# ninja: fight
-ffmpeg -y -ss 00:00:13 -i "${source_folder}/ninja-fight.mp4"  -t 21.5  "${output_folder}/30.mp4"
-
-# dance
-ffmpeg -y -ss 00:00:04 -i "${source_folder}/50-dance.mp4"  -t 40  "${output_folder}/50.mp4"
-
-# chorus dance
-
-# you wanna fight man?
-
-# chorus-without-music
+# cut the source video starting at 2 sec, into a piece with duration of 4 sec
+ffmpeg -y -ss 00:00:02 -i "source_video/example-video.mp4"  -t 4 "output/pieces/01.mp4"
+# cut the source video starting at 10 sec, into a piece with duration of 2 sec
+ffmpeg -y -ss 00:00:10 -i "source_video/example-video.mp4"  -t 2  "output/pieces/02.mp4"
+# To add a new piece, just copy the line above, changing the cut time and the output file name to "03.mp4"

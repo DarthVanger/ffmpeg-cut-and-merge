@@ -6,9 +6,9 @@ Some simple helper scripts / examples to cut/split a video into mulptiple pieces
 `cut.sh` script contains code to cut the source video into pieces, e.g.
 ```
 # cut the source video starting at 2 sec, into a piece with duration of 4 sec
-ffmpeg -y -ss 00:00:02 -i "${source_folder}/example-video.mp4"  -t 4 "${output_folder}/01.mp4"
+ffmpeg -y -ss 00:00:02 -i "source_video/example-video.mp4"  -t 4 "output/pieces/01.mp4"
 # cut the source video starting at 10 sec, into a piece with duration of 2 sec
-ffmpeg -y -ss 00:00:10 -i "${source_folder}/example-video.mp4"  -t 2  "${output_folder}/02.mp4"
+ffmpeg -y -ss 00:00:10 -i "source_video/example-video.mp4"  -t 2  "output/pieces/02.mp4"
 ```
 This script creates 2 pieces out of a source video, and saves them to the `output/pieces/` folder, with names `01.mp4` and `02.mp4`.
 
